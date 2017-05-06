@@ -2,7 +2,7 @@
 
 namespace ZFBrasil\BroadwayModuleTest\Factory;
 
-use Broadway\CommandHandling\CommandHandlerInterface;
+use Broadway\CommandHandling\CommandHandler;
 use Broadway\CommandHandling\SimpleCommandBus;
 use PHPUnit_Framework_TestCase as TestCase;
 use stdClass;
@@ -31,7 +31,7 @@ class SimpleCommandBusFactoryTest extends TestCase
             ->with('Config')
             ->willReturn($config);
 
-        $barHandler = $this->getMock(CommandHandlerInterface::class);
+        $barHandler = $this->getMock(CommandHandler::class);
 
         $serviceLocator
             ->expects($this->at(1))
@@ -39,7 +39,7 @@ class SimpleCommandBusFactoryTest extends TestCase
             ->with('Foo\Bar\Handler')
             ->willReturn($barHandler);
 
-        $bazHandler = $this->getMock(CommandHandlerInterface::class);
+        $bazHandler = $this->getMock(CommandHandler::class);
 
         $serviceLocator
             ->expects($this->at(2))
@@ -94,7 +94,7 @@ class SimpleCommandBusFactoryTest extends TestCase
             ->with('Config')
             ->willReturn($config);
 
-        $validHandler = $this->getMock(CommandHandlerInterface::class);
+        $validHandler = $this->getMock(CommandHandler::class);
 
         $serviceLocator
             ->expects($this->at(1))

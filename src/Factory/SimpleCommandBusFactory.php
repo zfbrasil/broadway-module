@@ -2,7 +2,7 @@
 
 namespace ZFBrasil\BroadwayModule\Factory;
 
-use Broadway\CommandHandling\CommandHandlerInterface;
+use Broadway\CommandHandling\CommandHandler;
 use Broadway\CommandHandling\SimpleCommandBus;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use ZFBrasil\BroadwayModule\Exception\InvalidArgumentException;
@@ -25,13 +25,13 @@ final class SimpleCommandBusFactory
         $handlerList = $config['broadway']['command_handlers'];
 
         foreach ($handlerList as $handlerName) {
-            /* @var CommandHandlerInterface $handler */
+            /* @var CommandHandler $handler */
             $handler = $serviceLocator->get($handlerName);
 
-            if (! $handler instanceof CommandHandlerInterface) {
+            if (! $handler instanceof CommandHandler) {
                 throw new InvalidArgumentException(sprintf(
                     'Command handler must be an instance of %s, %s given.',
-                    CommandHandlerInterface::class,
+                    CommandHandler::class,
                     is_object($handler) ? get_class($handler) : gettype($handler)
                 ));
             }
